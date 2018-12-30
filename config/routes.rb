@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :points do
     resources :votes
+    resources :downvotes
   end
   resources :retros
   get ':controller/:action/:id'

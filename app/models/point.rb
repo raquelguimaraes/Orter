@@ -3,8 +3,9 @@ class Point < ActiveRecord::Base
 
   belongs_to :section
   has_many :votes
+  has_many :downvotes
 
   def votes_count
-    votes.count
+    votes.count - downvotes.count
   end
 end

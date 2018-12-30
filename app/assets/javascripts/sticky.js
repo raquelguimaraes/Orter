@@ -71,7 +71,7 @@ Sticky.prototype.merge = function(otherSticky) {
     otherSticky.remove();
   });
   if (otherSticky.votes > 0) {
-    this.edit_vote(this.votes + otherSticky.votes, function(){})
+    this.add_vote(this.votes + otherSticky.votes, function(){})
   }
 };
 
@@ -136,13 +136,30 @@ Sticky.prototype.edit = function(value_hash, success) {
     });
 };
 
-Sticky.prototype.edit_vote = function(count, success) {
+Sticky.prototype.add_vote = function(count, success) {
   var thisSticky = this;
   thisSticky.votes = count;
   $.ajax({
     url: "/points/" + thisSticky.id + "/votes.json",
     type: "POST",
     data: {"vote": {"point_id": thisSticky.id }},
+    success: function(result) {
+      thisSticky.updateDom();
+      success(result)
+    },
+    error: function(result) {
+      alert('something went wrong. Please refresh the page');
+    }
+  });
+};
+
+Sticky.prototype.remove_vote = function(count, success) {
+  var thisSticky = this;
+  thisSticky.votes = count;
+  $.ajax({
+    url: "/points/" + thisSticky.id + "/downvotes.json",
+    type: "POST",
+    data: {"downvote": {"point_id": thisSticky.id }},
     success: function(result) {
       thisSticky.updateDom();
       success(result)

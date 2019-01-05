@@ -71,7 +71,11 @@ Sticky.prototype.merge = function(otherSticky) {
     otherSticky.remove();
   });
   if (otherSticky.votes > 0) {
-    this.add_vote(this.votes + otherSticky.votes, function(){})
+    var totalVotes = sticky.votes + otherSticky.votes
+    console.log('>> ' + sticky.votes + ' --- ' + otherSticky.votes + ' --- ' + totalVotes)
+    for (var index = 0; index < otherSticky.votes; index++) {
+      sticky.add_vote(totalVotes, function(){})
+    }
   }
 };
 

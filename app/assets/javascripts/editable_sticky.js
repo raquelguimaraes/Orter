@@ -63,11 +63,13 @@ EditableSticky.prototype.upVote = function(){
 };
 
 EditableSticky.prototype.downVote = function(){
-  var thisSticky = this;
-  this.dialog.find('.voteUpdated').text('Updating...').addClass('show');
-  this.sticky.remove_vote(this.sticky.votes - 1, function(result){
-    $('.count', thisSticky.dialog).text(thisSticky.sticky.votes);
-    $('.voteUpdated', thisSticky.dialog).text('Updated');
-    setTimeout(function(){$('.voteUpdated', thisSticky.dialog).removeClass('show');}, 2000);
-  });
+  if (this.sticky.votes > 0) {
+    var thisSticky = this;
+    this.dialog.find('.voteUpdated').text('Updating...').addClass('show');
+    this.sticky.remove_vote(this.sticky.votes - 1, function(result){
+      $('.count', thisSticky.dialog).text(thisSticky.sticky.votes);
+      $('.voteUpdated', thisSticky.dialog).text('Updated');
+      setTimeout(function(){$('.voteUpdated', thisSticky.dialog).removeClass('show');}, 2000);
+    });
+  }
 };

@@ -13,6 +13,8 @@ services:
       MYSQL_DATABASE: retro
       MYSQL_USER: retro
       MYSQL_PASSWORD: retro
+    volumes:
+      - retro-datavolume:/var/lib/mysql
 
   web:
     build:
@@ -29,3 +31,6 @@ services:
       - db:dbserver
     depends_on:
       - db
+
+volumes:
+  retro-datavolume:

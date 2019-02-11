@@ -10,7 +10,6 @@ TAGS
 tmp
 *~
 **/.DS_Store
-config/database.yml
 server
 *.DS_Store
 */.DS_Store

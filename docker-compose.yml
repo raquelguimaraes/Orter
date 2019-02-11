@@ -1,8 +1,7 @@
 version: '3.1'
 
 services:
-
-  db:
+  dbserver:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -27,10 +26,8 @@ services:
       - RAILS_ENV=docker
       - RECAPTCHA_PUBLIC_KEY=abcdefghijklmnopqrst
       - RECAPTCHA_PRIVATE_KEY=abcdefghijklmnopqrst
-    links:
-      - db:dbserver
     depends_on:
-      - db
+      - dbserver
 
 volumes:
   retro-datavolume:

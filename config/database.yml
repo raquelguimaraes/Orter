@@ -33,14 +33,6 @@ test:
       password: retro
       socket: /tmp/mysql.sock
 
-production:
-      adapter: mysql2
-      encoding: utf8
-      database: retro
-      username: retro
-      password: retro
-      socket: /tmp/mysql.sock
-
 docker:
       adapter: mysql2
       encoding: utf8
